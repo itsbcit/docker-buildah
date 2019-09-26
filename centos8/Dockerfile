@@ -1,5 +1,6 @@
-FROM bcit/centos:<%= image.vars['centos_version'] %>
-<%= snippet('labels', binding) -%>
+FROM bcit/centos:8
+LABEL maintainer="jesse@weisner.ca"
+LABEL build_id="1569534822"
 
 ENV RUNUSER none
 ENV HOME /
@@ -11,9 +12,7 @@ VOLUME /var/lib/containers
 RUN echo "exclude=mirror.layeronline.com" >> /etc/yum/pluginconf.d/fastestmirror.conf \
  && yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
     buildah \
-<% if image.vars['centos_version'] == '8' -%>
     fuse-overlayfs \
-<% end -%>
     podman \
  && rm -rf \
     /var/cache/* \

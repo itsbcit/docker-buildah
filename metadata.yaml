@@ -1,8 +1,14 @@
 ---
-image_name: template_test
-org_name: bcit
+image_name: buildah
 labels:
-  maintainer: "jesse@weisner.ca, chriswood.ca@gmail.com"
+  maintainer: "jesse@weisner.ca"
+variants:
+  'centos7':
+    vars:
+      centos_version: '7'
+  'centos8':
+    vars:
+      centos_version: '8'
 vars:
   tini_version: '0.18.0'
   de_version: '1.5'
