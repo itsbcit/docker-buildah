@@ -3,6 +3,7 @@ image_name: buildah
 labels:
   maintainer: "jesse@weisner.ca"
 variants:
+  'centos6':
   'centos7':
   'centos8':
     vars:
