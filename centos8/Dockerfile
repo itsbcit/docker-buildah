@@ -1,6 +1,6 @@
 FROM bcit/centos:8
 LABEL maintainer="jesse@weisner.ca"
-LABEL build_id="1569534822"
+LABEL build_id="1569537821"
 
 ENV RUNUSER none
 ENV HOME /
@@ -9,8 +9,7 @@ ENV BUILDAH_ISOLATION=chroot
 
 VOLUME /var/lib/containers
 
-RUN echo "exclude=mirror.layeronline.com" >> /etc/yum/pluginconf.d/fastestmirror.conf \
- && yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
+RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
     buildah \
     fuse-overlayfs \
     podman \
@@ -22,3 +21,4 @@ RUN echo "exclude=mirror.layeronline.com" >> /etc/yum/pluginconf.d/fastestmirror
  && mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers \
  && touch /var/lib/shared/overlay-images/images.lock \
  && touch /var/lib/shared/overlay-layers/layers.lock
+
