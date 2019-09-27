@@ -22,3 +22,12 @@ RUN yum -y --setopt tsflags=nodocs --setopt timeout=5 install \
  && mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers \
  && touch /var/lib/shared/overlay-images/images.lock \
  && touch /var/lib/shared/overlay-layers/layers.lock
+
+<% if image.variant == 'centos6' -%>
+RUN rm -rf \
+    /etc/yum.repos.d \
+    /etc/pki/rpm-gpg
+
+COPY --from=bcit/centos:6-latest /etc/yum.repos.d /etc/yum.repos.d
+COPY --from=bcit/centos:6-latest /etc/pki/rpm-gpg /etc/pki/rpm-gpg
+<% end -%>
